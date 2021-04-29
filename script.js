@@ -8,12 +8,30 @@ let personalMovieDB = {
     privat: false,
 };
 
-let movie1 = prompt("Один из последних просмотренных фильмов");
-let value1 = prompt("На сколько его оцените?");
-let movie2 = prompt("Один из последних просмотренных фильмов");
-let value2 = prompt("На сколько его оцените?");
+for( let i = 0; i < 2; i++ ){
+    let movie = prompt("Один из последних просмотренных фильмов");
+    while( movie.length >= 50 || movie.length === 0){
+        alert("Что-то пошло не так повторите ввод");
+        movie = prompt("Один из последних просмотренных фильмов");
+    }
 
-personalMovieDB.movies[movie1] = value1;
-personalMovieDB.movies[movie2] = value2;
+    let rating = +prompt("На сколько его оцените?" , 0);
+    while(isNaN(rating) || rating > 10 || rating <= 0){
+        alert("Что-то пошло не так повторите ввод");
+        rating = +prompt("На сколько его оцените?" , 0);
+    }
 
+    personalMovieDB.movies[movie] = rating;
+}
+
+if(personalMovieDB.count <= 10){
+    alert("Просмотрено довольно мало фильмов");
+}else if(personalMovieDB.count > 10 && personalMovieDB <= 30){
+    alert("Вы класический зритель");
+}else if(personalMovieDB.count > 30){
+    alert("Вы киноман!!");
+}else{
+    alert("Что-то пошло не так");
+}
+    
 console.log(personalMovieDB);
